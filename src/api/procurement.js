@@ -1,7 +1,11 @@
-import { createCrud } from './client';
+import { api, createCrud } from './client';
 
 export const procurementApi = {
-  inventory: createCrud('/procurement/inventory'),
+  inventory: {
+    ...createCrud('/procurement/inventory'),
+    reports: () => api.get('/procurement/inventory/reports/').then((r) => r.data),
+    stats: () => api.get('/procurement/inventory/stats/').then((r) => r.data),
+  },
   stockRequisitions: createCrud('/procurement/stock-requisitions'),
   suppliers: createCrud('/procurement/suppliers'),
   rfqs: createCrud('/procurement/rfqs'),

@@ -1,3 +1,4 @@
+import InventoryReports from './pages/procurement/InventoryReports';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -62,7 +63,9 @@ export default function App() {
         <Route path="sales/client-pos" element={<ClientPOs />} />
 
         {/* Procurement */}
+      
         <Route path="procurement/inventory" element={<Inventory />} />
+        <Route path="procurement/inventory-reports" element={<InventoryReports />} />
         <Route path="procurement/stock-requisitions" element={<StockRequisitions />} />
         <Route path="procurement/suppliers" element={<Suppliers />} />
         <Route path="procurement/purchase-orders" element={<PurchaseOrders />} />

@@ -23,11 +23,12 @@ const NAV = [
       { to: '/sales/client-pos', label: 'Client POs', icon: ClipboardList, module: 'sales' },
     ],
   },
-  {
+    {
     section: 'Warehouse',
     items: [
       { to: '/procurement/inventory', label: 'Inventory', icon: Package, module: 'stores' },
       { to: '/procurement/stock-requisitions', label: 'Stock Requisitions', icon: ClipboardList, module: 'stores' },
+      { to: '/procurement/inventory-reports', label: 'Inventory Reports', icon: BarChart3, module: 'inventory_reports' },
     ],
   },
   {
