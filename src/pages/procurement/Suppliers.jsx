@@ -2,7 +2,6 @@ import { Plus, Building2 } from 'lucide-react';
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
 import DataTable from '../../components/DataTable';
