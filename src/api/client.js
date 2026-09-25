@@ -71,4 +71,17 @@ export const createCrud = (endpoint) => ({
   remove: (id) => api.delete(`${endpoint}/${id}/`).then((r) => r.data),
   custom: (id, action, data) =>
     api.post(`${endpoint}/${id}/${action}/`, data || {}).then((r) => r.data),
+  pdf: async (id, filename) => {
+    const res = await api.get(`${endpoint}/${id}/pdf/`, {
+      responseType: 'blob',
+    });
+    const url = window.URL.createObjectURL(new Blob([res.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename || `document-${id}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  },
 });

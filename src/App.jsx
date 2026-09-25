@@ -36,6 +36,8 @@ import ExitProcesses from './pages/hr/ExitProcesses';
 
 // Admin
 import Approvals from './pages/admin/Approvals';
+import Users from './pages/admin/Users';
+import Branches from './pages/admin/Branches';
 
 export default function App() {
   return (
@@ -81,6 +83,10 @@ export default function App() {
         <Route path="hr/leaves" element={<Leaves />} />
         <Route path="hr/payroll" element={<Payroll />} />
         <Route path="hr/exits" element={<ExitProcesses />} />
+
+        {/* Admin */}
+        <Route path="admin/users" element={<Users />} />
+        <Route path="admin/branches" element={<Branches />} />
 
         <Route
           path="*"

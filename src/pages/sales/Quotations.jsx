@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Eye, Check, X, Send } from 'lucide-react';
+import { Eye, Check, X, Send, Download } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { salesApi } from '../../api/sales';
 import DataTable from '../../components/DataTable';
@@ -99,6 +99,15 @@ export default function Quotations() {
               >
                 <Eye className="w-4 h-4" />
               </Link>
+              <button
+                onClick={() =>
+                  salesApi.quotations.pdf(r.id, `${r.quote_no}.pdf`)
+                }
+                className="btn-ghost !p-2 text-slate-600"
+                title="Download PDF"
+              >
+                <Download className="w-4 h-4" />
+              </button>
               {isFinance && r.status === 'PENDING_FINANCE' && (
                 <>
                   <button
