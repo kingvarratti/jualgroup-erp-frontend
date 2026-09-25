@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { Plus, AlertTriangle } from 'lucide-react';
+import { Plus, AlertTriangle, Package } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
 import DataTable from '../../components/DataTable';
@@ -90,7 +90,14 @@ export default function Inventory() {
           columns={columns}
           data={data?.results}
           loading={isLoading}
-          emptyMessage="Inventory is empty"
+          emptyTitle="No inventory items yet"
+          emptyMessage="Add your first part or component to start tracking stock levels."
+          emptyIcon={Package}
+          emptyAction={
+            <button className="btn-primary" onClick={() => setModal(true)}>
+              <Plus className="w-4 h-4" /> Add First Item
+            </button>
+          }
         />
       </div>
 

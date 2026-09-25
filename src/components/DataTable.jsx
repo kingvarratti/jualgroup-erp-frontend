@@ -1,17 +1,32 @@
 import EmptyState from './EmptyState';
-import Loader from './Loader';
+import TableSkeleton from './TableSkeleton';
 
 export default function DataTable({
   columns,
   data,
   loading,
-  emptyMessage = 'No records found',
+  emptyMessage,
+  emptyTitle,
+  emptyAction,
+  emptyIcon,
   onRowClick,
   keyField = 'id',
   actions,
 }) {
-  if (loading) return <Loader />;
-  if (!data?.length) return <EmptyState message={emptyMessage} />;
+  if (loading) {
+    return <TableSkeleton rows={5} columns={columns.length + (actions ? 1 : 0)} />;
+  }
+
+  if (!data?.length) {
+    return (
+      <EmptyState
+        title={emptyTitle || 'No records yet'}
+        message={emptyMessage || 'Get started by creating your first entry.'}
+        action={emptyAction}
+        icon={emptyIcon}
+      />
+    );
+  }
 
   return (
     <div className="table-wrap">
@@ -30,7 +45,9 @@ export default function DataTable({
           {data.map((row, idx) => (
             <tr
               key={row[keyField] || idx}
-              className={onRowClick ? 'cursor-pointer' : ''}
+              className={`transition-colors ${
+                onRowClick ? 'cursor-pointer hover:bg-blue-50/40' : ''
+              }`}
               onClick={() => onRowClick?.(row)}
             >
               {columns.map((col) => (

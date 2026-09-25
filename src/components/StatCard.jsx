@@ -1,4 +1,11 @@
-export default function StatCard({ label, value, icon: Icon, color = 'brand', hint }) {
+export default function StatCard({
+  label,
+  value,
+  icon: Icon,
+  color = 'brand',
+  hint,
+  onClick,
+}) {
   const colors = {
     brand: 'bg-blue-50 text-blue-700',
     green: 'bg-green-50 text-green-700',
@@ -7,15 +14,22 @@ export default function StatCard({ label, value, icon: Icon, color = 'brand', hi
     purple: 'bg-purple-50 text-purple-700',
   };
 
+  const clickable = !!onClick;
+
   return (
-    <div className="card p-5">
+    <div
+      onClick={onClick}
+      className={`card p-5 ${
+        clickable ? 'card-hover cursor-pointer' : ''
+      }`}
+    >
       <div className="flex items-start justify-between">
-        <div>
+        <div className="min-w-0">
           <p className="text-xs uppercase tracking-wide text-slate-500 font-medium">
             {label}
           </p>
-          <p className="mt-2 text-2xl font-bold text-slate-800">{value}</p>
-          {hint && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
+          <p className="mt-2 text-2xl font-bold text-slate-800 truncate">{value}</p>
+          {hint && <p className="mt-1 text-xs text-slate-500 truncate">{hint}</p>}
         </div>
         {Icon && (
           <div className={`p-3 rounded-lg ${colors[color] || colors.brand}`}>

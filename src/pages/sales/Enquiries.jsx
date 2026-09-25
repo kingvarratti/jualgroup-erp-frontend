@@ -1,3 +1,4 @@
+import { FileText } from 'lucide-react';
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
@@ -99,12 +100,19 @@ export default function Enquiries() {
       </div>
 
       <div className="card">
-        <DataTable
+          <DataTable
           columns={columns}
           data={data?.results}
           loading={isLoading}
           onRowClick={(r) => navigate(`/sales/enquiries/${r.id}`)}
-          emptyMessage="No enquiries found"
+          emptyTitle="No enquiries yet"
+          emptyMessage="Log your first client enquiry to start the sales pipeline."
+          emptyIcon={FileText}
+          emptyAction={
+            <button className="btn-primary" onClick={() => setModal(true)}>
+              <Plus className="w-4 h-4" /> Create First Enquiry
+            </button>
+          }
         />
       </div>
 

@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { FileText, ShoppingCart, Factory, Wallet, CheckSquare, TrendingUp } from 'lucide-react';
+import {
+  FileText, ShoppingCart, Factory, Wallet, CheckSquare, TrendingUp,
+} from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { salesApi } from '../api/sales';
-import { procurementApi } from '../api/procurement';
 import { productionApi } from '../api/production';
 import { financeApi } from '../api/finance';
 import { coreApi } from '../api/core';
@@ -55,10 +56,30 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard label="Enquiries" value={enquiries?.count ?? '—'} icon={FileText} color="brand" />
-        <StatCard label="Quotations" value={quotations?.count ?? '—'} icon={TrendingUp} color="purple" />
-        <StatCard label="Manufacturing" value={mfgOrders?.count ?? '—'} icon={Factory} color="amber" />
-        <StatCard label="Invoices" value={invoices?.count ?? '—'} icon={Wallet} color="green" />
+        <StatCard
+          label="Enquiries"
+          value={enquiries?.count ?? '—'}
+          icon={FileText}
+          color="brand"
+        />
+        <StatCard
+          label="Quotations"
+          value={quotations?.count ?? '—'}
+          icon={TrendingUp}
+          color="purple"
+        />
+        <StatCard
+          label="Manufacturing"
+          value={mfgOrders?.count ?? '—'}
+          icon={Factory}
+          color="amber"
+        />
+        <StatCard
+          label="Invoices"
+          value={invoices?.count ?? '—'}
+          icon={Wallet}
+          color="green"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -88,7 +109,10 @@ export default function Dashboard() {
                 </div>
               ))
             ) : (
-              <p className="text-sm text-slate-500 text-center py-4">No pending approvals 🎉</p>
+              <div className="text-center py-6">
+                <p className="text-sm text-slate-500">No pending approvals 🎉</p>
+                <p className="text-xs text-slate-400 mt-1">You're all caught up</p>
+              </div>
             )}
           </div>
         </div>
@@ -116,7 +140,12 @@ export default function Dashboard() {
                 </div>
               ))
             ) : (
-              <p className="text-sm text-slate-500 text-center py-4">No client POs yet</p>
+              <div className="text-center py-6">
+                <p className="text-sm text-slate-500">No client POs yet</p>
+                <p className="text-xs text-slate-400 mt-1">
+                  They'll appear once Sales closes a deal
+                </p>
+              </div>
             )}
           </div>
         </div>

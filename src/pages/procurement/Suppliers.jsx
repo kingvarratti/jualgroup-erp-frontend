@@ -1,3 +1,4 @@
+import { Plus, Building2 } from 'lucide-react';
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
@@ -59,7 +60,14 @@ export default function Suppliers() {
           columns={columns}
           data={data?.results}
           loading={isLoading}
-          emptyMessage="No suppliers yet"
+          emptyTitle="No suppliers registered"
+          emptyMessage="Add your first supplier to start raising RFQs and purchase orders."
+          emptyIcon={Building2}
+          emptyAction={
+            <button className="btn-primary" onClick={() => setModal(true)}>
+              <Plus className="w-4 h-4" /> Add First Supplier
+            </button>
+          }
         />
       </div>
 

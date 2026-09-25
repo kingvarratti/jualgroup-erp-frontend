@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Check, Send } from 'lucide-react';
+import { Check, Send, ShoppingCart } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
 import DataTable from '../../components/DataTable';
@@ -79,7 +79,9 @@ export default function PurchaseOrders() {
           columns={columns}
           data={data?.results}
           loading={isLoading}
-          emptyMessage="No purchase orders"
+          emptyTitle="No purchase orders"
+          emptyMessage="Purchase orders are raised from supplier RFQs. Start by creating an RFQ."
+          emptyIcon={ShoppingCart}
           actions={(r) => (
             <div className="flex justify-end gap-1">
               {isFinance && r.status === 'PENDING_PROFITABILITY' && (
