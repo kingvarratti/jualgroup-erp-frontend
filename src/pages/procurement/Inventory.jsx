@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import {
   Plus, AlertTriangle, Package, PackageX, Search,
   Edit, Trash2, Boxes, CheckCircle2, FileText, Download, Upload,
-  SlidersHorizontal, History,
+  SlidersHorizontal, History, Building2,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
@@ -18,6 +18,7 @@ import { useAuth } from '../../context/AuthContext';
 import { ROLES } from '../../utils/constants';
 import InventoryImportModal from '../../components/InventoryImportModal';
 import StockAdjustmentModal from '../../components/StockAdjustmentModal';
+import BranchStockModal from '../../components/BranchStockModal';
 import ExportMenu from '../../components/ExportMenu';
 import ItemMovementsModal from '../../components/ItemMovementsModal';
 
@@ -45,6 +46,7 @@ export default function Inventory() {
   const qc = useQueryClient();
   const [importModal, setImportModal] = useState(false);
   const [adjustItem, setAdjustItem] = useState(null);
+  const [branchStockItem, setBranchStockItem] = useState(null);
 
   const isStores = [ROLES.STORES, ROLES.ADMIN, ROLES.SUPPLY_CHAIN].includes(
     user?.role
@@ -314,6 +316,32 @@ export default function Inventory() {
           <span className="text-slate-400 text-xs">—</span>
         ),
     },
+
+        {
+      key: 'branch_stocks',
+      label: 'Branches',
+      className: 'text-center',
+      render: (r) => {
+        const count = r.branch_stocks?.length || 0;
+        if (count === 0) {
+          return <span className="text-xs text-slate-400">—</span>;
+        }
+        return (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setBranchStockItem(r);
+            }}
+            className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700 hover:underline"
+            title="View branch breakdown"
+          >
+            <Building2 className="w-3 h-3" />
+            {count} branch{count > 1 ? 'es' : ''}
+          </button>
+        );
+      },
+    },
+
     {
       key: 'stock_status',
       label: 'Status',
@@ -733,6 +761,11 @@ export default function Inventory() {
             <ItemMovementsModal
         item={movementsItem}
         onClose={() => setMovementsItem(null)}
+      />
+
+            <BranchStockModal
+        item={branchStockItem}
+        onClose={() => setBranchStockItem(null)}
       />
 
       

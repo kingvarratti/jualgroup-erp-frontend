@@ -33,4 +33,5 @@ export const procurementApi = {
   grns: createCrud('/procurement/grns'),
   supplierPayments: createCrud('/procurement/supplier-payments'),
   movements: createCrud('/procurement/warehouse-movements'),
+  branchStocks: createCrud('/procurement/branch-stocks'),
 };
