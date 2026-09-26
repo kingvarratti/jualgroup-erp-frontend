@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import {
   Plus, AlertTriangle, Package, PackageX, Search,
   Edit, Trash2, Boxes, CheckCircle2, FileText, Download, Upload,
-  SlidersHorizontal,
+  SlidersHorizontal, History,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
@@ -19,6 +19,7 @@ import { ROLES } from '../../utils/constants';
 import InventoryImportModal from '../../components/InventoryImportModal';
 import StockAdjustmentModal from '../../components/StockAdjustmentModal';
 import ExportMenu from '../../components/ExportMenu';
+import ItemMovementsModal from '../../components/ItemMovementsModal';
 
 const CATEGORIES = [
   { value: '', label: 'All Categories' },
@@ -205,6 +206,8 @@ export default function Inventory() {
   } else if (filters.status === 'out_of_stock') {
     items = items.filter((i) => Number(i.quantity_on_hand) <= 0);
   }
+
+    const [movementsItem, setMovementsItem] = useState(null);
 
   const columns = [
     {
@@ -488,10 +491,18 @@ export default function Inventory() {
               </button>
             ) : null
           }
-                    actions={
-            isStores
-              ? (r) => (
-                  <div className="flex justify-end gap-1">
+                             actions={
+            (r) => (
+              <div className="flex justify-end gap-1">
+                <button
+                  onClick={() => setMovementsItem(r)}
+                  className="btn-ghost !p-2 text-slate-600"
+                  title="View Movement History"
+                >
+                  <History className="w-4 h-4" />
+                </button>
+                {isStores && (
+                  <>
                     <button
                       onClick={() => setAdjustItem(r)}
                       className="btn-ghost !p-2 text-amber-600"
@@ -513,9 +524,10 @@ export default function Inventory() {
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
-                  </div>
-                )
-              : null
+                  </>
+                )}
+              </div>
+            )
           }
           />
       </div>
@@ -717,6 +729,13 @@ export default function Inventory() {
         item={adjustItem}
         onClose={() => setAdjustItem(null)}
       />
+
+            <ItemMovementsModal
+        item={movementsItem}
+        onClose={() => setMovementsItem(null)}
+      />
+
+      
     </div>
 
     
