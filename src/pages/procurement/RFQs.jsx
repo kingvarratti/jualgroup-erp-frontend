@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { Plus, Send, FileText, Package } from 'lucide-react';
+import { Plus, Send, FileText, Package, Trophy} from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
 import { salesApi } from '../../api/sales';
@@ -10,6 +10,7 @@ import Modal from '../../components/Modal';
 import FormField from '../../components/FormField';
 import StatusBadge from '../../components/StatusBadge';
 import ExportMenu from '../../components/ExportMenu';
+import QuoteComparisonModal from '../../components/QuoteComparisonModal';
 
 const SOURCING_TYPES = [
   { value: 'LOCAL', label: 'Local Supplier', desc: 'Ghanaian supplier' },
@@ -21,6 +22,7 @@ export default function RFQs() {
   const qc = useQueryClient();
   const [modal, setModal] = useState(false);
   const [status, setStatus] = useState('');
+  const [compareRFQ, setCompareRFQ] = useState(null);
 
   const { data, isLoading } = useQuery({
     queryKey: ['rfqs', status],
@@ -128,13 +130,24 @@ export default function RFQs() {
       </div>
 
       <div className="card">
-        <DataTable
+                <DataTable
           columns={columns}
           data={data?.results}
           loading={isLoading}
           emptyTitle="No RFQs yet"
           emptyMessage="Create an RFQ to request quotes from suppliers."
           emptyIcon={Send}
+          actions={(r) => (
+            <div className="flex justify-end">
+              <button
+                onClick={() => setCompareRFQ(r)}
+                className="btn-ghost !p-2 text-blue-600"
+                title="Compare Quotes"
+              >
+                <Trophy className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         />
       </div>
 
@@ -150,6 +163,11 @@ export default function RFQs() {
       />
     </div>
   );
+
+        <QuoteComparisonModal
+        rfq={compareRFQ}
+        onClose={() => setCompareRFQ(null)}
+      />
 }
 
 
