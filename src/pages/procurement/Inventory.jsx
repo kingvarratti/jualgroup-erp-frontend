@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import {
   Plus, AlertTriangle, Package, PackageX, Search,
   Edit, Trash2, Boxes, CheckCircle2, FileText, Download, Upload,
+  SlidersHorizontal,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
@@ -16,6 +17,7 @@ import { formatCurrency } from '../../utils/formatters';
 import { useAuth } from '../../context/AuthContext';
 import { ROLES } from '../../utils/constants';
 import InventoryImportModal from '../../components/InventoryImportModal';
+import StockAdjustmentModal from '../../components/StockAdjustmentModal';
 
 const CATEGORIES = [
   { value: '', label: 'All Categories' },
@@ -40,6 +42,7 @@ export default function Inventory() {
   const { user } = useAuth();
   const qc = useQueryClient();
   const [importModal, setImportModal] = useState(false);
+  const [adjustItem, setAdjustItem] = useState(null);
 
   const isStores = [ROLES.STORES, ROLES.ADMIN, ROLES.SUPPLY_CHAIN].includes(
     user?.role
@@ -476,21 +479,17 @@ export default function Inventory() {
               </button>
             ) : null
           }
-          actions={
+                    actions={
             isStores
               ? (r) => (
                   <div className="flex justify-end gap-1">
-                    {r.datasheet && (
-                      <a
-                        href={r.datasheet}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn-ghost !p-2 text-red-500"
-                        title="View Datasheet"
-                      >
-                        <Download className="w-4 h-4" />
-                      </a>
-                    )}
+                    <button
+                      onClick={() => setAdjustItem(r)}
+                      className="btn-ghost !p-2 text-amber-600"
+                      title="Adjust Stock"
+                    >
+                      <SlidersHorizontal className="w-4 h-4" />
+                    </button>
                     <button
                       onClick={() => openEdit(r)}
                       className="btn-ghost !p-2 text-blue-600"
@@ -509,7 +508,7 @@ export default function Inventory() {
                 )
               : null
           }
-        />
+          />
       </div>
 
       {/* Modal */}
@@ -704,6 +703,13 @@ export default function Inventory() {
         open={importModal}
         onClose={() => setImportModal(false)}
       />
+
+            <StockAdjustmentModal
+        item={adjustItem}
+        onClose={() => setAdjustItem(null)}
+      />
     </div>
+
+    
   );
 }
