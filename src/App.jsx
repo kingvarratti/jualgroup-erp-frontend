@@ -29,7 +29,8 @@ import Payments from './pages/finance/Payments';
 import PaymentVouchers from './pages/finance/PaymentVouchers';
 import GeneralLedger from './pages/finance/GeneralLedger';
 import Dispatches from './pages/finance/Dispatches';
-
+import Statements from './pages/finance/Statements';
+    
 // HR
 import Leaves from './pages/hr/Leaves';
 import Payroll from './pages/hr/Payroll';
@@ -81,6 +82,8 @@ export default function App() {
         <Route path="finance/vouchers" element={<PaymentVouchers />} />
         <Route path="finance/ledger" element={<GeneralLedger />} />
         <Route path="finance/dispatches" element={<Dispatches />} />
+        <Route path="finance/statements" element={<Statements />} />
+
 
         {/* HR */}
         <Route path="hr/leaves" element={<Leaves />} />

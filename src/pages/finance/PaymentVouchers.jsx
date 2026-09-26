@@ -1,3 +1,5 @@
+import PVFilingModal from '../../components/PVFilingModal';
+import { FolderArchive } from 'lucide-react';
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
@@ -13,6 +15,7 @@ import { formatCurrency, formatDate } from '../../utils/formatters';
 export default function PaymentVouchers() {
   const qc = useQueryClient();
   const [modal, setModal] = useState(false);
+  const [filingPV, setFilingPV] = useState(null);
 
   const { data, isLoading } = useQuery({
     queryKey: ['pvs'],
@@ -66,8 +69,8 @@ export default function PaymentVouchers() {
           data={data?.results}
           loading={isLoading}
           emptyMessage="No payment vouchers"
-          actions={(r) => (
-            <div className="flex justify-end">
+                    actions={(r) => (
+            <div className="flex justify-end gap-1">
               {r.status === 'DRAFT' && (
                 <button
                   onClick={() => authorize.mutate(r.id)}
@@ -75,6 +78,15 @@ export default function PaymentVouchers() {
                   title="Authorize"
                 >
                   <Check className="w-4 h-4" />
+                </button>
+              )}
+              {['AUTHORIZED', 'PAID'].includes(r.status) && (
+                <button
+                  onClick={() => setFilingPV(r)}
+                  className="btn-ghost !p-2 text-slate-600"
+                  title="File Voucher"
+                >
+                  <FolderArchive className="w-4 h-4" />
                 </button>
               )}
             </div>
@@ -116,6 +128,7 @@ export default function PaymentVouchers() {
           </div>
         </form>
       </Modal>
+            <PVFilingModal pv={filingPV} onClose={() => setFilingPV(null)} />
     </div>
   );
 }

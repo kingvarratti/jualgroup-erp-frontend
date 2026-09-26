@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, Users, FileText, ShoppingCart, Factory,
   Wallet, LogOut, Building2, Send, DollarSign, CheckSquare,
-  Package, Truck, ClipboardList, BarChart3,
+  Package, Truck, ClipboardList, BarChart3, Receipt,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { canAccess } from '../utils/rolePermissions';
@@ -55,13 +55,17 @@ const NAV = [
       { to: '/finance/ledger', label: 'General Ledger', icon: BarChart3, module: 'accountant' },
     ],
   },
+  
   {
+      
     section: 'Accounts',
     items: [
       { to: '/finance/invoices', label: 'Invoices', icon: FileText, module: 'accounts' },
+      { to: '/finance/statements', label: 'Statements (SOA)', icon: Receipt, module: 'accounts' },
       { to: '/finance/dispatches', label: 'Dispatch', icon: Truck, module: 'logistics' },
     ],
   },
+  
   {
     section: 'Human Resources',
     items: [
