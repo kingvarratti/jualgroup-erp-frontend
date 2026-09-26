@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
 import DataTable from '../../components/DataTable';
 import StatusBadge from '../../components/StatusBadge';
+import ExportMenu from '../../components/ExportMenu';
 import GRNModal from '../../components/GRNModal';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import { useAuth } from '../../context/AuthContext';
@@ -70,7 +71,7 @@ export default function PurchaseOrders() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
@@ -83,6 +84,13 @@ export default function PurchaseOrders() {
           <option value="SENT">Sent to Supplier</option>
           <option value="RECEIVED">Received</option>
         </select>
+
+        <ExportMenu
+          columns={columns}
+          data={data?.results || []}
+          filename={`purchase-orders-${new Date().toISOString().slice(0, 10)}`}
+          title="Purchase Orders Report"
+        />
       </div>
 
       <div className="card">

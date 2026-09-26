@@ -18,6 +18,7 @@ import { useAuth } from '../../context/AuthContext';
 import { ROLES } from '../../utils/constants';
 import InventoryImportModal from '../../components/InventoryImportModal';
 import StockAdjustmentModal from '../../components/StockAdjustmentModal';
+import ExportMenu from '../../components/ExportMenu';
 
 const CATEGORIES = [
   { value: '', label: 'All Categories' },
@@ -409,7 +410,14 @@ export default function Inventory() {
               <option value="-quantity_on_hand">Highest Qty</option>
             </select>
 
-                                    {isStores && (
+                        <ExportMenu
+              columns={columns}
+              data={items}
+              filename={`inventory-${new Date().toISOString().slice(0, 10)}`}
+              title="Inventory Report"
+            />
+
+                            {isStores && (
               <>
                 <button
                   className="btn-secondary"
@@ -422,6 +430,7 @@ export default function Inventory() {
                 </button>
               </>
             )}
+            
           </div>
 
           {/* Status tabs */}

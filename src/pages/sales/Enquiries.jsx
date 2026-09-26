@@ -12,6 +12,7 @@ import FormField from '../../components/FormField';
 import StatusBadge from '../../components/StatusBadge';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 
+
 export default function Enquiries() {
   const qc = useQueryClient();
   const navigate = useNavigate();

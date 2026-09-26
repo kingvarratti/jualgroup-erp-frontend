@@ -9,7 +9,9 @@ import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
 import FormField from '../../components/FormField';
 import StatusBadge from '../../components/StatusBadge';
+import ExportMenu from '../../components/ExportMenu';
 import { formatCurrency, formatDate } from '../../utils/formatters';
+
 
 export default function Invoices() {
   const qc = useQueryClient();
@@ -55,7 +57,13 @@ export default function Invoices() {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end">
+            <div className="flex justify-end gap-2">
+        <ExportMenu
+          columns={columns}
+          data={data?.results || []}
+          filename={`invoices-${new Date().toISOString().slice(0, 10)}`}
+          title="Invoices Report"
+        />
         <button onClick={() => setModal(true)} className="btn-primary">
           <Plus className="w-4 h-4" /> New Invoice
         </button>

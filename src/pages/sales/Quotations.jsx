@@ -12,9 +12,12 @@ import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
 import FormField from '../../components/FormField';
 import StatusBadge from '../../components/StatusBadge';
+import ExportMenu from '../../components/ExportMenu';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import { useAuth } from '../../context/AuthContext';
 import { ROLES } from '../../utils/constants';
+
+
 
 const FINANCE_THRESHOLD = 100000;
 
@@ -95,7 +98,7 @@ export default function Quotations() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
@@ -108,11 +111,19 @@ export default function Quotations() {
           <option value="SUBMITTED">Submitted</option>
         </select>
 
-        {isSales && (
-          <button className="btn-primary" onClick={() => setModal(true)}>
-            <Plus className="w-4 h-4" /> New Quotation
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          <ExportMenu
+            columns={columns}
+            data={data?.results || []}
+            filename={`quotations-${new Date().toISOString().slice(0, 10)}`}
+            title="Quotations Report"
+          />
+          {isSales && (
+            <button className="btn-primary" onClick={() => setModal(true)}>
+              <Plus className="w-4 h-4" /> New Quotation
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="card">
