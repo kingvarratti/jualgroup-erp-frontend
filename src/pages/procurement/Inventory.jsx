@@ -15,6 +15,7 @@ import StatCard from '../../components/StatCard';
 import { formatCurrency } from '../../utils/formatters';
 import { useAuth } from '../../context/AuthContext';
 import { ROLES } from '../../utils/constants';
+import InventoryImportModal from '../../components/InventoryImportModal';
 
 const CATEGORIES = [
   { value: '', label: 'All Categories' },
@@ -38,6 +39,7 @@ const STATUS_TABS = [
 export default function Inventory() {
   const { user } = useAuth();
   const qc = useQueryClient();
+  const [importModal, setImportModal] = useState(false);
 
   const isStores = [ROLES.STORES, ROLES.ADMIN, ROLES.SUPPLY_CHAIN].includes(
     user?.role
@@ -404,10 +406,18 @@ export default function Inventory() {
               <option value="-quantity_on_hand">Highest Qty</option>
             </select>
 
-            {isStores && (
-              <button className="btn-primary" onClick={openCreate}>
-                <Plus className="w-4 h-4" /> Add Item
-              </button>
+                                    {isStores && (
+              <>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setImportModal(true)}
+                >
+                  <Upload className="w-4 h-4" /> Import
+                </button>
+                <button className="btn-primary" onClick={openCreate}>
+                  <Plus className="w-4 h-4" /> Add Item
+                </button>
+              </>
             )}
           </div>
 
@@ -689,6 +699,10 @@ export default function Inventory() {
         title="Delete Inventory Item?"
         message={`Are you sure you want to delete "${confirmDelete?.part_number} — ${confirmDelete?.description}"? This cannot be undone.`}
         loading={deleteMutation.isPending}
+      />
+            <InventoryImportModal
+        open={importModal}
+        onClose={() => setImportModal(false)}
       />
     </div>
   );
