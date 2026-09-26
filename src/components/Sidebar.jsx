@@ -29,6 +29,7 @@ const NAV = [
       { to: '/procurement/inventory', label: 'Inventory', icon: Package, module: 'stores' },
       { to: '/procurement/stock-requisitions', label: 'Stock Requisitions', icon: ClipboardList, module: 'stores' },
       { to: '/procurement/inventory-reports', label: 'Inventory Reports', icon: BarChart3, module: 'inventory_reports' },
+      { to: '/procurement/requisitions', label: 'Requisitions', icon: ClipboardList, module: 'stores' },
     ],
   },
   

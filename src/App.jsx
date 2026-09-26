@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Requisitions from './pages/procurement/Requisitions';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -74,6 +75,7 @@ export default function App() {
         <Route path="procurement/purchase-orders" element={<PurchaseOrders />} />
         <Route path="procurement/sourcing" element={<SupplyChainQueue />} />
         <Route path="procurement/rfqs" element={<RFQs />} />
+        <Route path="procurement/requisitions" element={<Requisitions />} />
         
 
         {/* Production */}

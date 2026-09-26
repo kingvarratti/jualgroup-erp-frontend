@@ -1,6 +1,12 @@
 import { api, createCrud } from './client';
 
 export const procurementApi = {
+
+  requisitions: {
+    ...createCrud('/procurement/requisitions'),
+    stats: () => api.get('/procurement/requisitions/stats/').then((r) => r.data),
+  },
+  
   inventory: {
     ...createCrud('/procurement/inventory'),
     reports: () => api.get('/procurement/inventory/reports/').then((r) => r.data),
