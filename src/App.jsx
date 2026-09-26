@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Requisitions from './pages/procurement/Requisitions';
 import StockTransfers from './pages/procurement/StockTransfers';
 import InternalMovements from './pages/procurement/InternalMovements';
+import Cannibalizations from './pages/procurement/Cannibalizations';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -80,6 +81,7 @@ export default function App() {
         <Route path="procurement/requisitions" element={<Requisitions />} />
         <Route path="procurement/transfers" element={<StockTransfers />} />
         <Route path="procurement/internal-movements" element={<InternalMovements />} />
+        <Route path="procurement/cannibalizations" element={<Cannibalizations />} />
         
 
         {/* Production */}
