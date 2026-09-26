@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, Users, FileText, ShoppingCart, Factory,
   Wallet, LogOut, Building2, Send, DollarSign, CheckSquare,
-  Package, Truck, ClipboardList, BarChart3, Receipt, Inbox,
+  Package, Truck, ClipboardList, BarChart3, Receipt, Inbox, ArrowRight, MapPin,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { canAccess } from '../utils/rolePermissions';
@@ -30,6 +30,8 @@ const NAV = [
       { to: '/procurement/stock-requisitions', label: 'Stock Requisitions', icon: ClipboardList, module: 'stores' },
       { to: '/procurement/inventory-reports', label: 'Inventory Reports', icon: BarChart3, module: 'inventory_reports' },
       { to: '/procurement/requisitions', label: 'Requisitions', icon: ClipboardList, module: 'stores' },
+      { to: '/procurement/transfers', label: 'Stock Transfers', icon: ArrowRight, module: 'stores' },
+      { to: '/procurement/internal-movements', label: 'Internal Movements', icon: MapPin, module: 'stores' },
     ],
   },
   

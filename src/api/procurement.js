@@ -2,6 +2,19 @@ import { api, createCrud } from './client';
 
 export const procurementApi = {
 
+    internalMovements: {
+    ...createCrud('/procurement/internal-movements'),
+    stats: () => api.get('/procurement/internal-movements/stats/').then((r) => r.data),
+  },
+
+
+    transfers: {
+    ...createCrud('/procurement/transfers'),
+    stats: () => api.get('/procurement/transfers/stats/').then((r) => r.data),
+    availability: (id) =>
+      api.get(`/procurement/transfers/${id}/availability/`).then((r) => r.data),
+  },
+
   requisitions: {
     ...createCrud('/procurement/requisitions'),
     stats: () => api.get('/procurement/requisitions/stats/').then((r) => r.data),

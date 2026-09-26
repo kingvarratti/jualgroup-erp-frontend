@@ -5,6 +5,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Requisitions from './pages/procurement/Requisitions';
+import StockTransfers from './pages/procurement/StockTransfers';
+import InternalMovements from './pages/procurement/InternalMovements';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -76,6 +78,8 @@ export default function App() {
         <Route path="procurement/sourcing" element={<SupplyChainQueue />} />
         <Route path="procurement/rfqs" element={<RFQs />} />
         <Route path="procurement/requisitions" element={<Requisitions />} />
+        <Route path="procurement/transfers" element={<StockTransfers />} />
+        <Route path="procurement/internal-movements" element={<InternalMovements />} />
         
 
         {/* Production */}
