@@ -17,6 +17,7 @@ import Inventory from './pages/procurement/Inventory';
 import StockRequisitions from './pages/procurement/StockRequisitions';
 import Suppliers from './pages/procurement/Suppliers';
 import PurchaseOrders from './pages/procurement/PurchaseOrders';
+import SupplyChainQueue from './pages/procurement/SupplyChainQueue';
 
 // Production
 import ManufacturingOrders from './pages/production/ManufacturingOrders';
@@ -70,6 +71,8 @@ export default function App() {
         <Route path="procurement/stock-requisitions" element={<StockRequisitions />} />
         <Route path="procurement/suppliers" element={<Suppliers />} />
         <Route path="procurement/purchase-orders" element={<PurchaseOrders />} />
+        <Route path="procurement/sourcing" element={<SupplyChainQueue />} />
+        
 
         {/* Production */}
         <Route path="production/orders" element={<ManufacturingOrders />} />

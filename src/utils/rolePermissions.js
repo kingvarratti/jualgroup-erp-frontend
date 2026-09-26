@@ -14,7 +14,7 @@ export const canAccess = (user, module) => {
       ROLES.PROD_MANAGER,
     ],
     stores: [ROLES.STORES, ROLES.SUPPLY_CHAIN],
-    supply_chain: [ROLES.SUPPLY_CHAIN],
+    supply_chain: [ROLES.SUPPLY_CHAIN, ROLES.ADMIN],
 
     // ⭐ EXCLUSIVE: Only Stores + Admin can see Inventory Reports
     inventory_reports: [ROLES.STORES, ROLES.SUPPLY_CHAIN],

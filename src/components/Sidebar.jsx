@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, Users, FileText, ShoppingCart, Factory,
   Wallet, LogOut, Building2, Send, DollarSign, CheckSquare,
-  Package, Truck, ClipboardList, BarChart3, Receipt,
+  Package, Truck, ClipboardList, BarChart3, Receipt, Inbox,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { canAccess } from '../utils/rolePermissions';
@@ -31,9 +31,11 @@ const NAV = [
       { to: '/procurement/inventory-reports', label: 'Inventory Reports', icon: BarChart3, module: 'inventory_reports' },
     ],
   },
-  {
+  
+      {
     section: 'Supply Chain',
     items: [
+      { to: '/procurement/sourcing', label: 'Sourcing Queue', icon: Inbox, module: 'supply_chain' },
       { to: '/procurement/suppliers', label: 'Suppliers', icon: Building2, module: 'supply_chain' },
       { to: '/procurement/rfqs', label: 'RFQs', icon: Send, module: 'supply_chain' },
       { to: '/procurement/purchase-orders', label: 'Purchase Orders', icon: ShoppingCart, module: 'supply_chain' },
