@@ -512,7 +512,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
 
   const actionMutation = useMutation({
     mutationFn: ({ id, action, payload }) =>
-      procurementApi.requisitions.custom(id, 'dispatch', payload || {}),
+      procurementApi.requisitions.custom(id, action, payload || {}),
     onSuccess: (_, vars) => {
       toast.success(vars.action.replace(/_/g, ' '));
       qc.invalidateQueries({ queryKey: ['requisition', requisition?.id] });
@@ -547,6 +547,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
       title={`${req.req_no} — ${req.type_display}`}
       size="lg"
     >
+      {/* Info block */}
       <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-5 grid grid-cols-2 gap-3 text-sm">
         <div>
           <p className="text-xs text-slate-500">Status</p>
@@ -592,6 +593,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
         )}
       </div>
 
+      {/* Items table */}
       <div className="border border-slate-200 rounded-lg overflow-hidden mb-5">
         <table className="w-full text-sm">
           <thead className="bg-slate-50">
@@ -650,17 +652,23 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
         </table>
       </div>
 
+      {/* Workflow action buttons */}
       <div className="flex flex-wrap gap-2 mb-4">
         {canApprove && (
           <button
             onClick={() => actionMutation.mutate({ id: req.id, action: 'approve' })}
             className="btn-primary"
+            disabled={actionMutation.isPending}
           >
             <Check className="w-4 h-4" /> Approve
           </button>
         )}
         {canReject && (
-          <button onClick={() => setRejectModal(true)} className="btn-danger">
+          <button
+            onClick={() => setRejectModal(true)}
+            className="btn-danger"
+            disabled={actionMutation.isPending}
+          >
             <X className="w-4 h-4" /> Reject
           </button>
         )}
@@ -670,6 +678,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
               actionMutation.mutate({ id: req.id, action: 'start_picking' })
             }
             className="btn-primary"
+            disabled={actionMutation.isPending}
           >
             <ArrowRight className="w-4 h-4" /> Start Picking
           </button>
@@ -680,6 +689,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
               actionMutation.mutate({ id: req.id, action: 'mark_packed' })
             }
             className="btn-primary"
+            disabled={actionMutation.isPending}
           >
             <Package className="w-4 h-4" /> Mark Packed
           </button>
@@ -690,6 +700,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
               actionMutation.mutate({ id: req.id, action: 'dispatch' })
             }
             className="btn-primary"
+            disabled={actionMutation.isPending}
           >
             <Truck className="w-4 h-4" /> Dispatch
           </button>
@@ -700,6 +711,7 @@ function RequisitionDetailModal({ requisition, onClose, isStores, onUpdate }) {
               actionMutation.mutate({ id: req.id, action: 'receive' })
             }
             className="btn-primary"
+            disabled={actionMutation.isPending}
           >
             <PackageCheck className="w-4 h-4" /> Mark Received
           </button>
