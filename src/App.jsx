@@ -11,6 +11,7 @@ import Cannibalizations from './pages/procurement/Cannibalizations';
 import SalesOrders from './pages/sales/SalesOrders';
 import MyLeave from './pages/hr/MyLeave';
 import LeaveApprovals from './pages/hr/LeaveApprovals';
+import Payroll from './pages/hr/Payroll';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -43,7 +44,6 @@ import Statements from './pages/finance/Statements';
     
 // HR
 import Leaves from './pages/hr/Leaves';
-import Payroll from './pages/hr/Payroll';
 import ExitProcesses from './pages/hr/ExitProcesses';
 
 // Admin
@@ -109,6 +109,7 @@ export default function App() {
         <Route path="hr/exits" element={<ExitProcesses />} />
         <Route path="hr/my-leave" element={<MyLeave />} />
         <Route path="hr/leave-approvals" element={<LeaveApprovals />} />
+        <Route path="hr/payroll" element={<Payroll />} />
 
         {/* Admin */}
         <Route path="admin/users" element={<Users />} />
