@@ -12,6 +12,7 @@ import SalesOrders from './pages/sales/SalesOrders';
 import MyLeave from './pages/hr/MyLeave';
 import LeaveApprovals from './pages/hr/LeaveApprovals';
 import Payroll from './pages/hr/Payroll';
+import ExitProcesses from './pages/hr/ExitProcesses';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -44,7 +45,7 @@ import Statements from './pages/finance/Statements';
     
 // HR
 import Leaves from './pages/hr/Leaves';
-import ExitProcesses from './pages/hr/ExitProcesses';
+
 
 // Admin
 import Approvals from './pages/admin/Approvals';

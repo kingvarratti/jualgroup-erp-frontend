@@ -33,5 +33,8 @@ export const hrApi = {
     },
   },
   payslips: createCrud('/hr/payslips'),
-  exitProcesses: createCrud('/hr/exit-processes'),
+    exitProcesses: {
+    ...createCrud('/hr/exit-processes'),
+    stats: () => api.get('/hr/exit-processes/stats/').then((r) => r.data),
+  },
 };
