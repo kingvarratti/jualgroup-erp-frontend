@@ -8,6 +8,7 @@ import Requisitions from './pages/procurement/Requisitions';
 import StockTransfers from './pages/procurement/StockTransfers';
 import InternalMovements from './pages/procurement/InternalMovements';
 import Cannibalizations from './pages/procurement/Cannibalizations';
+import SalesOrders from './pages/sales/SalesOrders';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -15,6 +16,7 @@ import EnquiryDetail from './pages/sales/EnquiryDetail';
 import Quotations from './pages/sales/Quotations';
 import QuotationDetail from './pages/sales/QuotationDetail';
 import ClientPOs from './pages/sales/ClientPOs';
+
 
 // Procurement
 import Inventory from './pages/procurement/Inventory';
@@ -68,6 +70,7 @@ export default function App() {
         <Route path="sales/quotations" element={<Quotations />} />
         <Route path="sales/quotations/:id" element={<QuotationDetail />} />
         <Route path="sales/client-pos" element={<ClientPOs />} />
+        <Route path="sales/sales-orders" element={<SalesOrders />} />
 
         {/* Procurement */}
       

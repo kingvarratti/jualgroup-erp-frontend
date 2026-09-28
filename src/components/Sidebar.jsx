@@ -21,6 +21,7 @@ const NAV = [
       { to: '/sales/enquiries', label: 'Enquiries', icon: FileText, module: 'sales' },
       { to: '/sales/quotations', label: 'Quotations', icon: Send, module: 'sales' },
       { to: '/sales/client-pos', label: 'Client POs', icon: ClipboardList, module: 'sales' },
+      { to: '/sales/sales-orders', label: 'Sales Orders', icon: Package, module: 'sales' },
     ],
   },
     {
