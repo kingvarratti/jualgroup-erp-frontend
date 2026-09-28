@@ -45,6 +45,8 @@ import Statements from './pages/finance/Statements';
     
 // HR
 import Leaves from './pages/hr/Leaves';
+import PerformanceCycles from './pages/hr/PerformanceCycles';
+import MyAppraisals from './pages/hr/MyAppraisals';
 
 
 // Admin
@@ -111,6 +113,8 @@ export default function App() {
         <Route path="hr/my-leave" element={<MyLeave />} />
         <Route path="hr/leave-approvals" element={<LeaveApprovals />} />
         <Route path="hr/payroll" element={<Payroll />} />
+        <Route path="hr/performance" element={<PerformanceCycles />} />
+<       Route path="hr/my-appraisals" element={<MyAppraisals />} />
 
         {/* Admin */}
         <Route path="admin/users" element={<Users />} />
