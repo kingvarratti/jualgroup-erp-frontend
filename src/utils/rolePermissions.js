@@ -4,7 +4,7 @@ export const canAccess = (user, module) => {
   if (!user) return false;
   if (user.role === ROLES.ADMIN) return true;
 
-    const permissions = {
+  const permissions = {
     sales: [ROLES.SALES_ENG, ROLES.PROJ_ENG_SALES, ROLES.DESIGN_ENG_SALES],
 
     procurement: [
@@ -14,9 +14,7 @@ export const canAccess = (user, module) => {
       ROLES.PROD_MANAGER,
     ],
     stores: [ROLES.STORES, ROLES.SUPPLY_CHAIN],
-    supply_chain: [ROLES.SUPPLY_CHAIN, ROLES.ADMIN],
-
-    // ⭐ EXCLUSIVE: Only Stores + Admin can see Inventory Reports
+    supply_chain: [ROLES.SUPPLY_CHAIN],
     inventory_reports: [ROLES.STORES, ROLES.SUPPLY_CHAIN],
 
     production: [
@@ -35,6 +33,10 @@ export const canAccess = (user, module) => {
     logistics: [ROLES.LOGISTICS, ROLES.STORES, ROLES.ACCOUNTS, ROLES.FINANCE],
 
     hr: [ROLES.HR],
+    hr_manager: [
+      ROLES.HR,
+    ],
+
     admin: [ROLES.ADMIN],
 
     approvals: [

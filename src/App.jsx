@@ -9,6 +9,8 @@ import StockTransfers from './pages/procurement/StockTransfers';
 import InternalMovements from './pages/procurement/InternalMovements';
 import Cannibalizations from './pages/procurement/Cannibalizations';
 import SalesOrders from './pages/sales/SalesOrders';
+import MyLeave from './pages/hr/MyLeave';
+import LeaveApprovals from './pages/hr/LeaveApprovals';
 
 // Sales
 import Enquiries from './pages/sales/Enquiries';
@@ -105,6 +107,8 @@ export default function App() {
         <Route path="hr/leaves" element={<Leaves />} />
         <Route path="hr/payroll" element={<Payroll />} />
         <Route path="hr/exits" element={<ExitProcesses />} />
+        <Route path="hr/my-leave" element={<MyLeave />} />
+        <Route path="hr/leave-approvals" element={<LeaveApprovals />} />
 
         {/* Admin */}
         <Route path="admin/users" element={<Users />} />

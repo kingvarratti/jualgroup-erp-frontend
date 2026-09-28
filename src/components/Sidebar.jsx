@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, Users, FileText, ShoppingCart, Factory,
   Wallet, LogOut, Building2, Send, DollarSign, CheckSquare,
-  Package, Truck, ClipboardList, BarChart3, Receipt, Inbox, ArrowRight, MapPin, Wrench,
+  Package, Truck, ClipboardList, BarChart3, Receipt, Inbox, ArrowRight, MapPin, Wrench, Calendar, UserCheck,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { canAccess } from '../utils/rolePermissions';
@@ -73,10 +73,17 @@ const NAV = [
     ],
   },
   
-  {
-    section: 'Human Resources',
+      {
+    section: 'My HR',
     items: [
-      { to: '/hr/leaves', label: 'Leave Management', icon: ClipboardList, module: 'hr' },
+      { to: '/hr/my-leave', label: 'My Leave', icon: Calendar },
+    ],
+  },
+  {
+    section: 'HR Admin',
+    items: [
+      { to: '/hr/leave-approvals', label: 'Leave Approvals', icon: UserCheck, module: 'hr_manager' },
+      { to: '/hr/leaves', label: 'All Applications', icon: ClipboardList, module: 'hr' },
       { to: '/hr/payroll', label: 'Payroll', icon: DollarSign, module: 'hr' },
       { to: '/hr/exits', label: 'Exit Processes', icon: LogOut, module: 'hr' },
     ],

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { Plus, Send, FileText, Package, Trophy} from 'lucide-react';
+import { Plus, Send, FileText, Package, Trophy } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { procurementApi } from '../../api/procurement';
 import { salesApi } from '../../api/sales';
@@ -130,7 +130,7 @@ export default function RFQs() {
       </div>
 
       <div className="card">
-                <DataTable
+        <DataTable
           columns={columns}
           data={data?.results}
           loading={isLoading}
@@ -161,13 +161,13 @@ export default function RFQs() {
           setModal(false);
         }}
       />
-    </div>
-  );
 
-        <QuoteComparisonModal
+      <QuoteComparisonModal
         rfq={compareRFQ}
         onClose={() => setCompareRFQ(null)}
       />
+    </div>
+  );
 }
 
 
