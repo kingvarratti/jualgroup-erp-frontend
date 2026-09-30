@@ -20,6 +20,18 @@ export const procurementApi = {
       api.get(`/procurement/transfers/${id}/availability/`).then((r) => r.data),
   },
 
+    categories: {
+    ...createCrud('/procurement/categories'),
+    tree: () => api.get('/procurement/categories/tree/').then((r) => r.data),
+    flat: () => api.get('/procurement/categories/flat/').then((r) => r.data),
+  },
+  aliases: createCrud('/procurement/aliases'),
+  supplierItems: createCrud('/procurement/supplier-items'),
+  stockMovements: {
+    ...createCrud('/procurement/stock-movements'),
+    summary: () => api.get('/procurement/stock-movements/summary/').then((r) => r.data),
+  },
+
   requisitions: {
     ...createCrud('/procurement/requisitions'),
     stats: () => api.get('/procurement/requisitions/stats/').then((r) => r.data),

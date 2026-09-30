@@ -29,6 +29,8 @@ import Suppliers from './pages/procurement/Suppliers';
 import PurchaseOrders from './pages/procurement/PurchaseOrders';
 import SupplyChainQueue from './pages/procurement/SupplyChainQueue';
 import RFQs from './pages/procurement/RFQs';
+import ItemCategories from './pages/procurement/ItemCategories';
+import StockMovements from './pages/procurement/StockMovements';
 
 // Production
 import ManufacturingOrders from './pages/production/ManufacturingOrders';
@@ -90,6 +92,8 @@ export default function App() {
         <Route path="procurement/transfers" element={<StockTransfers />} />
         <Route path="procurement/internal-movements" element={<InternalMovements />} />
         <Route path="procurement/cannibalizations" element={<Cannibalizations />} />
+        <Route path="/procurement/categories" element={<ItemCategories />} />
+        <Route path="/procurement/stock-movements" element={<StockMovements />} /> 
         
 
         {/* Production */}
